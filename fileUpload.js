@@ -12,7 +12,13 @@ const storage = multer.diskStorage({
   },
 });
 
-const uploadStorage = multer({ storage: storage });
+const uploadStorage = multer({
+  storage: storage,
+  limits: {
+    fieldNameSize: 255,
+    fileSize: 5000000,
+  },
+});
 
 // Single file
 app.post("/upload/single", uploadStorage.single("file"), (req, res) => {
